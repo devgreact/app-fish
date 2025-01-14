@@ -73,11 +73,7 @@ export function addFishes(app: Application, fishes: Sprite[]): void {
   }
 }
 
-export function animateFishes(
-  app: Application,
-  fishes: Sprite[],
-  time: { deltaTime: number },
-): void {
+export function animateFishes(app: Application, fishes: Sprite[]): void {
   // Define the padding around the stage where fishes are considered out of sight.
   const stagePadding = 100;
   const boundWidth = app.screen.width + stagePadding * 2;

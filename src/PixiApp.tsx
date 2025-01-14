@@ -90,7 +90,7 @@ const PixiApp: React.FC = () => {
       app.ticker.add(delta => {
         if (fishesArray.length > 0) {
           // 물고기가 있을 때만 애니메이션 실행
-          animateFishes(app, fishesArray, { deltaTime: delta });
+          animateFishes(app, fishesArray);
         }
         if (waterOverlay.current) {
           animateWaterOverlay(waterOverlay.current, delta);
