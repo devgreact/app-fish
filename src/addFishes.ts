@@ -63,7 +63,7 @@ export function addFishes(app: Application, fishes: Sprite[]): void {
 
       fish.x = Math.random() * app.screen.width;
       fish.y = Math.random() * app.screen.height;
-      fish.scale.set(0.5 + Math.random() * 0.2);
+      fish.scale.set(0.3 + Math.random() * 0.1);
 
       fishContainer.addChild(fish);
       fishes.push(fish);
