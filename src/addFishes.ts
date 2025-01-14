@@ -36,7 +36,16 @@ export function addFishes(app: Application, fishes: Sprite[]): void {
   app.stage.addChild(fishContainer);
 
   const fishCount = 20;
-  const fishAssets = ["fish1", "fish2", "fish3", "fish4", "fish5"];
+  const fishAssets = [
+    "fish1",
+    "fish2",
+    "fish3",
+    "fish4",
+    "fish5",
+    "fish6",
+    "fish7",
+    "fish8",
+  ];
 
   for (let i = 0; i < fishCount; i++) {
     try {

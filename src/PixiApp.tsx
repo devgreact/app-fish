@@ -60,6 +60,18 @@ const PixiApp: React.FC = () => {
           src: "/assets/fish5.png",
         },
         {
+          alias: "fish6",
+          src: "/assets/fish6.png",
+        },
+        {
+          alias: "fish7",
+          src: "/assets/fish7.png",
+        },
+        {
+          alias: "fish8",
+          src: "/assets/fish8.png",
+        },
+        {
           alias: "overlay",
           src: "/assets/wave_overlay.png",
         },
