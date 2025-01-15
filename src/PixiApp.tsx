@@ -108,6 +108,12 @@ const PixiApp: React.FC = () => {
           animateWaterOverlay(waterOverlay.current, delta);
         }
       });
+
+      // 모든 컨텐츠가 로드된 후
+      window.onload = () => {
+        // Type assertion 사용
+        (window as any).ReactNativeWebView?.postMessage("loaded");
+      };
     };
 
     setup();
