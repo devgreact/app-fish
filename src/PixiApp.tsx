@@ -133,8 +133,35 @@ const PixiApp: React.FC = () => {
     };
   }, []);
 
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    // React Native로부터 메시지 수신
+    window.addEventListener("message", event => {
+      try {
+        const data = JSON.parse(event.data);
+        setMessage(`Received from RN: ${data.payload.message}`);
+
+        // 데이터 타입에 따른 처리
+        if (data.type === "INIT_DATA") {
+          // 초기 데이터 처리
+          setMessage(`${data.payload.message}`);
+        }
+      } catch (error) {
+        setMessage(`메시지 파싱 에러:, ${error}`);
+      }
+    });
+
+    // 컴포넌트가 언마운트될 때 리스너 제거
+    return () => {
+      window.removeEventListener("message", () => {});
+    };
+  }, []);
+
   return (
-    <div ref={pixiContainer} style={{ width: "100%", height: "100vh" }}></div>
+    <>
+      <div>메세지 : {message}</div>
+      <div ref={pixiContainer} style={{ width: "100%", height: "100vh" }}></div>
+    </>
   );
 };
 
