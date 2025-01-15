@@ -134,24 +134,51 @@ const PixiApp: React.FC = () => {
   }, []);
 
   const [message, setMessage] = useState("");
+  // useEffect(() => {
+  //   // React Native로부터 메시지 수신
+  //   window.addEventListener("message", event => {
+  //     try {
+  //       const data = JSON.parse(event.data);
+  //       setMessage(`Received from RN: ${data.payload.message}`);
+
+  //       // 데이터 타입에 따른 처리
+  //       if (data.type === "INIT_DATA") {
+  //         // 초기 데이터 처리
+  //         setMessage(`${data.payload.message}`);
+  //       }
+  //     } catch (error) {
+  //       setMessage(`메시지 파싱 에러:, ${error}`);
+  //     }
+  //   });
+
+  //   // 컴포넌트가 언마운트될 때 리스너 제거
+  //   return () => {
+  //     window.removeEventListener("message", () => {});
+  //   };
+  // }, []);
+
   useEffect(() => {
-    // React Native로부터 메시지 수신
     window.addEventListener("message", event => {
       try {
         const data = JSON.parse(event.data);
-        setMessage(`Received from RN: ${data.payload.message}`);
-
         // 데이터 타입에 따른 처리
         if (data.type === "INIT_DATA") {
           // 초기 데이터 처리
-          setMessage(`${data.payload.message}`);
+          setMessage(`Received INIT_DATA: ${data.payload.message}`);
+        }
+        if (data.type === "UPDATE_COUNT") {
+          // 카운트 값 업데이트
+          const newCount = data.payload.count;
+          // 여기서 React 상태 업데이트 또는 필요한 처리
+          // console.log('Received new count:', newCount);
+          setMessage(`Received new count: ${newCount}`);
         }
       } catch (error) {
+        console.error("메시지 파싱 에러:", error);
         setMessage(`메시지 파싱 에러:, ${error}`);
       }
     });
 
-    // 컴포넌트가 언마운트될 때 리스너 제거
     return () => {
       window.removeEventListener("message", () => {});
     };
